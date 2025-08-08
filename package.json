@@ -1,0 +1,28 @@
+{
+  "name": "test-codex",
+  "version": "1.0.0",
+  "description": "A test project for codex",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "node index.js"
+  },
+  "keywords": [
+    "test",
+    "codex",
+    "project"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/test-codex.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/test-codex/issues"
+  },
+  "homepage": "https://github.com/yourusername/test-codex#readme",
+  "devDependencies": {},
+  "dependencies": {}
+}
