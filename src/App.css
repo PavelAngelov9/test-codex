@@ -1,0 +1,43 @@
+.app {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.controls {
+  margin-bottom: 1rem;
+}
+
+.hand {
+  margin-top: 1rem;
+}
+
+.card {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 70px;
+  border: 1px solid #333;
+  border-radius: 4px;
+  margin: 0 4px;
+  font-size: 20px;
+  line-height: 1;
+  background-color: #fff;
+}
+
+.card.red {
+  color: #d00;
+}
+
+.card.black {
+  color: #000;
+}
+
+.trick {
+  margin-top: 1rem;
+}
+
+.announce {
+  margin-top: 0.5rem;
+  font-weight: bold;
+}
