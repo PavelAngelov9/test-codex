@@ -1,30 +1,22 @@
 # Test Codex
 
-Welcome to the Test Codex project!
+This project now includes a very simple Belote card game implemented with React. You play against three bot opponents.
 
 ## Getting Started
 
-This is a new project. Add your project description here.
-
-## Installation
-
 ```bash
-# Add installation instructions here
+npm install
+npm run dev
 ```
 
-## Usage
+This will start a development server (using Vite) and open the game in your browser.
 
-```bash
-# Add usage instructions here
-```
+## Gameplay
 
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+- Four players take turns playing cards.
+- Click a card in your hand to play it.
+- Bots automatically choose a legal card to play.
+- Highest card in the lead suit wins each trick.
 
 ## License
 
