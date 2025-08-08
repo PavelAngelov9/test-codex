@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './App.css';
 
 const suits = ['♣', '♦', '♥', '♠'];
 const ranks = ['7', '8', '9', 'J', 'Q', 'K', '10', 'A'];
@@ -59,6 +60,9 @@ export default function App() {
   const [trick, setTrick] = useState([]); // {player, card}
   const [leadSuit, setLeadSuit] = useState(null);
   const [message, setMessage] = useState('');
+  const [announce, setAnnounce] = useState('');
+  const [trumpSuit, setTrumpSuit] = useState('♠');
+  const [announceMsg, setAnnounceMsg] = useState('');
 
   useEffect(() => {
     const deck = shuffle(createDeck());
@@ -106,23 +110,74 @@ export default function App() {
   const isPlayersTurn = currentPlayer === 0;
   const legal = legalMoves(playerHand, leadSuit);
 
+  const belote =
+    playerHand.some(c => c.rank === 'K' && c.suit === trumpSuit) &&
+    playerHand.some(c => c.rank === 'Q' && c.suit === trumpSuit);
+
+  useEffect(() => {
+    if (announce === 'belote') {
+      setAnnounceMsg(belote ? `Belote in ${trumpSuit}!` : `No belote in ${trumpSuit}.`);
+    } else if (announce === 'all_koz') {
+      setAnnounceMsg('All Koz (all trump)');
+    } else if (announce === 'without_koz') {
+      setAnnounceMsg('Without Koz (no trump)');
+    } else {
+      setAnnounceMsg('');
+    }
+  }, [announce, trumpSuit, belote]);
+
+  const suitColor = suit => (['♥', '♦'].includes(suit) ? 'red' : 'black');
+
   return (
-    <div>
+    <div className="app">
       <h1>Simple Belote</h1>
+      <div className="controls">
+        <label>
+          Announce:
+          <select value={announce} onChange={e => setAnnounce(e.target.value)}>
+            <option value="">--</option>
+            <option value="belote">Belote</option>
+            <option value="all_koz">All Koz</option>
+            <option value="without_koz">Without Koz</option>
+          </select>
+        </label>
+        {announce === 'belote' && (
+          <label>
+            {' '}
+            Trump:
+            <select value={trumpSuit} onChange={e => setTrumpSuit(e.target.value)}>
+              {suits.map(s => (
+                <option key={s} value={s}>
+                  {s}
+                </option>
+              ))}
+            </select>
+          </label>
+        )}
+        {announceMsg && <div className="announce">{announceMsg}</div>}
+      </div>
       {message && <p>{message}</p>}
       <div className="trick">
         {trick.map(t => (
-          <div key={t.player}>P{t.player + 1}: {t.card.rank}{t.card.suit}</div>
+          <div key={t.player}>
+            P{t.player + 1}:{' '}
+            <span className={`card ${suitColor(t.card.suit)}`}>
+              {t.card.rank}
+              {t.card.suit}
+            </span>
+          </div>
         ))}
       </div>
       <div className="hand">
         {playerHand.map((card, i) => (
           <button
+            className={`card ${suitColor(card.suit)}`}
             key={i}
             disabled={!isPlayersTurn || !legal.some(c => c === card)}
             onClick={() => playCard(card)}
           >
-            {card.rank}{card.suit}
+            {card.rank}
+            {card.suit}
           </button>
         ))}
       </div>

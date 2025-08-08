@@ -17,6 +17,8 @@ This will start a development server (using Vite) and open the game in your brow
 - Click a card in your hand to play it.
 - Bots automatically choose a legal card to play.
 - Highest card in the lead suit wins each trick.
+- Cards are displayed with suit colors and card-like visuals.
+- Simple announce controls let you check for Belote, All Koz, or Without Koz.
 
 ## License
 
